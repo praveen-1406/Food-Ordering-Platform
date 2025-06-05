@@ -4,7 +4,7 @@ const router=express.Router();
 
 // /api/my/user
 
-router.post("/",MyUserController.createCurrentUser as RequestHandler)
+router.post("/",MyUserController.createCurrentUser as RequestHandler) 
 
 
 export default router; 
