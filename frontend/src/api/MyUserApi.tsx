@@ -24,13 +24,16 @@ export const useCreateMyUser = () => {
     const {
         mutateAsync: createUser,
         isError,
-        isSuccess
+        isSuccess,
+        isPending,
     } = useMutation<void, Error, CreateUserRequest>({mutationFn:createMyUserRequest})
-    const isLoading = status === "loading";
+
+    // const isLoading = status === "loading";
 
     return {
         createUser,
-        isLoading,
+        // isLoading,
+        isPending,
         isError,
         isSuccess,
     }

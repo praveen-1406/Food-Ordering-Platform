@@ -20,7 +20,7 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
         // console.log("User:",user)
         // console.log("appState:",appState)
         if(user?.sub && user?.email){
-            createUser({auth0Id:user.sub,email:user.email})
+            createUser({auth0Id:user.sub,email:user.email})  //user.sub is user's id.
         }
     }
 
@@ -29,7 +29,7 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
             domain={domain}
             clientId={clientId}
             authorizationParams={{
-                redirect_uri: redirectUri
+                redirect_uri: redirectUri,
             }}
             onRedirectCallback={onRedirectCallback}
         >
