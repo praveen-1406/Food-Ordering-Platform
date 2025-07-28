@@ -6,7 +6,10 @@ const router=express.Router();
 
 // /api/my/user
 
-router.post("/",jwtCheck,MyUserController.createCurrentUser as RequestHandler) ;
+router.post("/",
+    jwtCheck,
+    MyUserController.createCurrentUser as RequestHandler
+) ;
 
 router.put(
     "/",
