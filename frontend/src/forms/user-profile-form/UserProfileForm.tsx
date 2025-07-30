@@ -5,16 +5,17 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
-import { useAuth0 } from "@auth0/auth0-react";
+import { User } from "@/types";
+import { useEffect } from "react";
 
 
 
 const formSchema = z.object({
     email: z.string().optional(),
-    name: z.string().min(1, "Name is required"),
-    addressLine1: z.string().min(1, "Address Line 1 is required"),
-    city: z.string().min(1, "City is required"),
-    country: z.string().min(1, "Country is required"),
+    name: z.string().trim().min(1, "Name is required"),
+    addressLine1: z.string().trim().min(1, "Address Line 1 is required"),
+    city: z.string().trim().min(1, "City is required"),
+    country: z.string().trim().min(1, "Country is required"),
 });
 
 type UserFormData = z.infer<typeof formSchema>;
@@ -22,25 +23,28 @@ type UserFormData = z.infer<typeof formSchema>;
 
 
 type Props = {
+    currentUser:User,
     onSave: (userProfileData: UserFormData) => void;
     isLoading: boolean;
 }
 
 
-const UserProfileForm = ({ onSave, isLoading }: Props) => {
+const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
     
-    const {user}=useAuth0()
-
     const form = useForm<UserFormData>({
         resolver: zodResolver(formSchema),
         defaultValues:{
-            email:user?.email||"",
-            name:"",
-            addressLine1:"",
-            city:"",
-            country:"",
-        }
+            email:currentUser.email,
+            name:currentUser.name || "",
+            addressLine1:currentUser.addressLine1 || "",
+            city:currentUser.city || "",
+            country:currentUser.country || "",
+        },
     });
+
+    useEffect(()=>{
+        form.reset(currentUser);
+    },[currentUser,form])
 
 
     return (

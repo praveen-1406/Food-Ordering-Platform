@@ -6,10 +6,17 @@ const router=express.Router();
 
 // /api/my/user
 
+router.get(
+    "/",
+    jwtCheck,
+    jwtParse,
+    MyUserController.getCurrentUser as RequestHandler
+);
+
 router.post("/",
     jwtCheck,
     MyUserController.createCurrentUser as RequestHandler
-) ;
+);
 
 router.put(
     "/",
@@ -18,6 +25,7 @@ router.put(
     validateMyUserRequest, 
     MyUserController.updateCurrentUser as RequestHandler
 );
+
 
 
 export default router; 

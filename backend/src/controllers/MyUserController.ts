@@ -1,6 +1,26 @@
 import { Request, RequestHandler, Response } from "express";
 import User from "../models/user";
 
+
+export const getCurrentUser=async(req:Request,res:Response)=>{
+    try {
+        const currentUser=await User.findById(req.userId);
+
+        if(!currentUser){
+            res.status(404).json({message:"User not found"});
+            return;
+        }
+
+        res.json(currentUser);
+        return;
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message:"Something went wrong!"})
+        return;
+    }
+}
+
 export const createCurrentUser = async (req: Request, res: Response) => {
     try {
         const { auth0Id } = req.body;
@@ -19,7 +39,7 @@ export const createCurrentUser = async (req: Request, res: Response) => {
     }
 }
 
-export const updateCurrentUser:RequestHandler = async (req: Request, res: Response):Promise<void> => {
+export const updateCurrentUser = async (req: Request, res: Response):Promise<void> => {
     try {
         const { name, addressLine1, country, city } = req.body;
         const user = await User.findById(req.userId);
@@ -46,7 +66,10 @@ export const updateCurrentUser:RequestHandler = async (req: Request, res: Respon
     }
 }
 
+
+
 export default {
     createCurrentUser,
     updateCurrentUser,
+    getCurrentUser,
 }

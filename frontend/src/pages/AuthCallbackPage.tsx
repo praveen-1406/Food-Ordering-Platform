@@ -7,7 +7,7 @@ function AuthCallbackPage() {
 
     const navigate=useNavigate()
     const {user}=useAuth0()
-    const {createUser,}=useCreateMyUser();
+    const {createUser}=useCreateMyUser();
 
     const hasCreatedUser=useRef(false)
 
