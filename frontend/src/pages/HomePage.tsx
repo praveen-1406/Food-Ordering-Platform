@@ -3,7 +3,7 @@ import appDownlaodImage from "../assets/appDownload.png"
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col gap-12 mx-26">
+    <div className="flex flex-col gap-12 mx-12 md:mx-26">
       <div className="bg-white rounded-lg shadow-md py-8 felx flex-col gap-5 text-center -mt-16">
         <h1 className="text5xl font-bold tracking-tight text-orange-600">
             Tuck into a Takway today

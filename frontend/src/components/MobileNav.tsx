@@ -22,7 +22,7 @@ const MobileNav = () => {
                             {user?.email}
                         </span>
                     ) : (
-                        <span>Welcome to MernEats.com!</span>
+                        <span className="my-110">Welcome to MernEats.com!</span>
                     )}
 
                 </SheetTitle>

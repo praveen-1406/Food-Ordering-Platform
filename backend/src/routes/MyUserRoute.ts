@@ -13,7 +13,8 @@ router.get(
     MyUserController.getCurrentUser as RequestHandler
 );
 
-router.post("/",
+router.post(
+    "/",
     jwtCheck,
     MyUserController.createCurrentUser as RequestHandler
 );
