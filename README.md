@@ -38,8 +38,11 @@ A full-stack **Food Ordering Application** built using the **MERN stack** – Mo
 - JSON Web Token (JWT)
 - Express Validator
 
-### 🗄 Database
+### 🗄 Cloud & Database 
 - Mongodb Atlas
+- Cloudinary
+- Auth0
+- Render
 
 ---
 
