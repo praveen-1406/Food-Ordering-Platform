@@ -30,6 +30,7 @@ const MenuSection = () => {
                             <MenuItemInput
                                 index={index}
                                 removeMenuItem={() => remove(index)}
+                                key={index}
                             />
                         ))}
                     </FormItem>

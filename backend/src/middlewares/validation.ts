@@ -4,6 +4,7 @@ import { body, validationResult } from "express-validator";
 const handleValidationErrors=async(req:Request,res:Response,next:NextFunction)=>{
     const errors=validationResult(req);
     if(!errors.isEmpty()){
+        // console.log(errors)
         res.status(400).json({errors:errors.array()});
         return;
     }
@@ -45,9 +46,9 @@ export const validateMyRestaurantRequest=[
         .notEmpty()
         .withMessage("City is required"),
 
-    body("Country")
+    body("country")
         .notEmpty()
-        .withMessage("Restaurant name is required"),
+        .withMessage("Country name is required"),
 
     body("deliveryPrice")
         .isFloat({min:0})
