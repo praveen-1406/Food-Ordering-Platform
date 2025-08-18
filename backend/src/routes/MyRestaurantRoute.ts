@@ -21,7 +21,7 @@ router.get(
     jwtCheck,
     jwtParse,
     MyRestaurantController.getMyRestaurant as RequestHandler,
-)
+);
 
 router.post(
     "/",
@@ -32,5 +32,13 @@ router.post(
     MyRestaurantController.createMyRestaurant as RequestHandler
 );
 
+router.put(
+    "/",
+    upload.single("imageFile"),
+    validateMyRestaurantRequest,
+    jwtCheck,
+    jwtParse,
+    MyRestaurantController.updateMyRestaurant as RequestHandler
+);
 
 export default router;
