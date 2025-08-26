@@ -77,3 +77,6 @@ const SearchBar = ({ onSubmit, onReset, placeholder }: Props) => {
 }
 
 export default SearchBar
+
+
+

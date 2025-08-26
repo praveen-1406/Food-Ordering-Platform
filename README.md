@@ -1,4 +1,4 @@
-#  MERN Food Ordering Web App
+#  ****MERN Food Ordering Web App****
 
 A full-stack **Food Ordering Application** built using the **MERN stack** – MongoDB, Express.js, React.js, and Node.js. This web app allows users to browse food items, add them to a cart, and place orders. It also includes admin features for managing menu items and viewing orders.
 
@@ -8,16 +8,16 @@ A full-stack **Food Ordering Application** built using the **MERN stack** – Mo
 
 -  User Authentication (Register/Login)
 -  Browse Food Menu
--  Add/Remove Items from Cart
+-  Add your Restaruant
 -  Place Orders
 -  View Past Orders
--  Admin Panel to Add/Delete Foods & View Orders
+-  Sort the search
 
 ---
 
-## 🌐 Tech Stack
+##  Tech Stack
 
-### 🎨 Frontend
+###  Frontend
 - Typescript
 - React.js
 - React Router DOM
@@ -30,7 +30,7 @@ A full-stack **Food Ordering Application** built using the **MERN stack** – Mo
 - Zod Validation
 - Auth0 Authentication
 
-### 🔧 Backend
+###  Backend
 - Typescript
 - Node.js
 - Express.js
@@ -38,7 +38,7 @@ A full-stack **Food Ordering Application** built using the **MERN stack** – Mo
 - JSON Web Token (JWT)
 - Express Validator
 
-### 🗄 Cloud & Database 
+###  Cloud & Database 
 - Mongodb Atlas
 - Cloudinary
 - Auth0
