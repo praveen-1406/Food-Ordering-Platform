@@ -8,6 +8,7 @@ export const useSearchRestaurants=(searchState:SearchState,city?:string)=>{
 
     const params=new URLSearchParams();
     params.set("searchQuery",searchState.searchQuery);
+    params.set("page",searchState.page.toString());
 
     const createsearchRequest=async():Promise<RestaurantSearchResponse>=>{
         const response=await fetch(
@@ -31,7 +32,7 @@ export const useSearchRestaurants=(searchState:SearchState,city?:string)=>{
         enabled:!!city,
     });
 
-    
+
     return{
         results,
         isPending,
