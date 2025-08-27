@@ -21,7 +21,7 @@ const HomePage = () => {
         </h1>
         <span className="text-xl">Food is just a click away!</span>
 
-        <SearchBar placeholder="Search by City ot Town" onSubmit={handleSearchSubmit} />
+        <SearchBar placeholder="Search by City or Town" onSubmit={handleSearchSubmit} />
 
       </div>
       <div className="grid md:grid-cols-2 gap5">
