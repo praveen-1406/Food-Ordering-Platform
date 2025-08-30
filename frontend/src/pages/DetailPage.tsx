@@ -51,6 +51,16 @@ const DetailPage = () => {
         })
     }
 
+    const removeFromCart = (cartItem: CartItem) => {
+        setCartItems((prevCartItems) => {
+            const updatedCartItems = prevCartItems.filter(
+                (item) => cartItem._id !== item._id
+            );
+
+            return updatedCartItems;
+        })
+    }
+
     if (isPending || !restaurant) {
         return <div>Loading...</div>;
     }
@@ -68,12 +78,20 @@ const DetailPage = () => {
                     <RestaurantInfo restaurant={restaurant} />
                     <span className="text-2xl font-bold tracking-tight">Menu</span>
                     {restaurant.menuItems.map((menuItem) => (
-                        <MenuItemCard menuItem={menuItem} addToCart={()=>addtoCart(menuItem)} />
+                        <MenuItemCard
+                            menuItem={menuItem}
+                            addToCart={() => addtoCart(menuItem)}
+                            key={menuItem._id}
+                        />
                     ))}
                 </div>
                 <div>
                     <Card>
-                        <OrderSummary restaurant={restaurant} cartItems={cartItems} />
+                        <OrderSummary
+                            restaurant={restaurant}
+                            cartItems={cartItems}
+                            removeFromCart={removeFromCart}
+                        />
                     </Card>
                 </div>
             </div>
