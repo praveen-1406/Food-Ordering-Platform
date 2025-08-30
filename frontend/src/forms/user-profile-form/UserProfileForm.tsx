@@ -21,17 +21,24 @@ const formSchema = z.object({
 export type UserFormData = z.infer<typeof formSchema>;
 
 type Props = {
-    currentUser:User,
+    currentUser: User,
     onSave: (userProfileData: UserFormData) => void;
     isLoading: boolean;
+    title?: string;
+    buttonText?: string;
 }
 
 
-const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
-    
+const UserProfileForm = ({
+    currentUser, onSave,
+    isLoading,
+    title = "User Profile",
+    buttonText="Submit",
+}: Props) => {
+
     const form = useForm<UserFormData>({
         resolver: zodResolver(formSchema),
-        defaultValues:{
+        defaultValues: {
             // email:currentUser.email,
             // name:currentUser.name || "",
             // addressLine1:currentUser.addressLine1 || "",
@@ -46,9 +53,9 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
         },
     });
 
-    useEffect(()=>{
+    useEffect(() => {
         form.reset(currentUser);
-    },[currentUser,form])
+    }, [currentUser, form])
 
 
     return (
@@ -58,7 +65,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
                 className="space-y-4 bg-gray-50 rounded-lg p-5 md:p-10 mx-9"
             >
                 <div>
-                    <h2 className="text-2xl font-bold">User Profile Form</h2>
+                    <h2 className="text-2xl font-bold">{title}</h2>
                     <FormDescription>
                         View and change your profile information here
                     </FormDescription>
@@ -70,7 +77,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input {...field} disabled className="bg-white"/>
+                                <Input {...field} disabled className="bg-white" />
                             </FormControl>
                         </FormItem>
                     )} />
@@ -84,7 +91,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
                             <FormControl>
                                 <Input {...field} className="bg-white" />
                             </FormControl>
-                            <FormMessage/>
+                            <FormMessage />
                         </FormItem>
                     )} />
 
@@ -98,7 +105,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
                                 <FormControl>
                                     <Input {...field} className="bg-white" />
                                 </FormControl>
-                                <FormMessage/>
+                                <FormMessage />
                             </FormItem>
                         )} />
 
@@ -111,7 +118,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
                                 <FormControl>
                                     <Input {...field} className="bg-white" />
                                 </FormControl>
-                                <FormMessage/>
+                                <FormMessage />
                             </FormItem>
                         )} />
 
@@ -124,7 +131,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
                                 <FormControl>
                                     <Input {...field} className="bg-white" />
                                 </FormControl>
-                                <FormMessage/>
+                                <FormMessage />
                             </FormItem>
                         )} />
                 </div>
@@ -133,7 +140,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
                     <LoadingButton />
                 ) : (
                     <Button type="submit" className="bg-orange-500">
-                        Submit
+                        {buttonText}
                     </Button>
                 )}
 
