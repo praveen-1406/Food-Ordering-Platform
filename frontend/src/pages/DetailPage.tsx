@@ -1,3 +1,4 @@
+import { useCreateCheckoutSession } from "@/api/OrderApi";
 import { useGetRestaurant } from "@/api/RestaurantApi";
 import CheckoutButton from "@/components/CheckoutButton";
 import MenuItemCard from "@/components/MenuItemCard";
@@ -21,10 +22,11 @@ const DetailPage = () => {
 
     const { restaurantId } = useParams();
     const { isPending, restaurant } = useGetRestaurant(restaurantId);
+    const { isPending: isCheckoutLoading, createCheckoutSession, } = useCreateCheckoutSession();
 
-    const [cartItems, setCartItems] = useState<CartItem[]>(()=>{
-        const storedCartItems=sessionStorage.getItem(`cartItems-${restaurantId}`);
-        return storedCartItems?JSON.parse(storedCartItems):[];
+    const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+        const storedCartItems = sessionStorage.getItem(`cartItems-${restaurantId}`);
+        return storedCartItems ? JSON.parse(storedCartItems) : [];
     });
 
     const addtoCart = (menuItem: MenuItem) => {
@@ -51,7 +53,7 @@ const DetailPage = () => {
                 ]
             }
 
-            sessionStorage.setItem(`cartItems-${restaurantId}`,JSON.stringify(updatedCartItems));
+            sessionStorage.setItem(`cartItems-${restaurantId}`, JSON.stringify(updatedCartItems));
 
             return updatedCartItems;
 
@@ -64,14 +66,37 @@ const DetailPage = () => {
                 (item) => cartItem._id !== item._id
             );
 
-            sessionStorage.setItem(`cartItems-${restaurantId}`,JSON.stringify(updatedCartItems));
+            sessionStorage.setItem(`cartItems-${restaurantId}`, JSON.stringify(updatedCartItems));
 
             return updatedCartItems;
         })
     }
 
-    const onCheckout=(userFormData:UserFormData)=>{
-        console.log("userFormData:",userFormData)
+    const onCheckout = async(userFormData: UserFormData) => {
+        // console.log("userFormData:", userFormData)
+        if(!restaurant){
+            return ;
+        }
+
+        const checkoutData = {
+            cartItems: cartItems.map((cartItem) => ({
+                menuItemId: cartItem._id,
+                name: cartItem.name,
+                quantity: cartItem.quantity.toString(),
+            })),
+            restaurantId: restaurant._id,
+            deliveryDetails: {
+                name:userFormData.name,
+                addressLine1:userFormData.addressLine1,
+                city:userFormData.city,
+                country:userFormData.country,
+                email:userFormData.email as string,
+            },
+        };
+
+        const data=await createCheckoutSession(checkoutData);
+
+        window.location.href=data.url;
     }
 
     if (isPending || !restaurant) {
@@ -106,9 +131,10 @@ const DetailPage = () => {
                             removeFromCart={removeFromCart}
                         />
                         <CardFooter>
-                            <CheckoutButton 
-                                disabled={cartItems.length===0}
+                            <CheckoutButton
+                                disabled={cartItems.length === 0}
                                 onCheckout={onCheckout}
+                                isLoading={isCheckoutLoading}
                             />
                         </CardFooter>
                     </Card>
