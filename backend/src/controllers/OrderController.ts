@@ -21,6 +21,14 @@ type CheckoutSessionRequest = {
     restaurantId: string;
 }
 
+const stripeWebhookHandler=async(req: Request, res: Response)=>{
+    console.log("RECEIVED EVENT");
+    console.log("==============");
+    console.log("event: ",req.body);
+    res.send();
+}
+
+
 const createCheckoutSession = async (req: Request, res: Response) => {
     try {
 
@@ -143,4 +151,5 @@ const createSession = async (
 
 export default {
     createCheckoutSession,
+    stripeWebhookHandler,
 }
