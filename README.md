@@ -3,7 +3,7 @@
 A full-stack **Food Ordering Application** built using the **MERN stack** – MongoDB, Express.js, React.js, and Node.js. This web app allows users to browse food items, add them to a cart, and place orders. It also includes admin features for managing menu items and viewing orders.
 
 ---
-Visit: [MernEats](https://mern-food-ordering-app-frontend-5xqt.onrender.com/)
+Live: [MernEats](https://mern-food-ordering-app-frontend-5xqt.onrender.com/)
 ---
 
 ##  Features
@@ -13,7 +13,9 @@ Visit: [MernEats](https://mern-food-ordering-app-frontend-5xqt.onrender.com/)
 -  Add your Restaruant
 -  Place Orders
 -  View Past Orders
--  Sort the search
+-  Order Status Dynamic Updating.
+-  Sort the search 
+-  Payments via Card
 
 ---
 
@@ -39,12 +41,14 @@ Visit: [MernEats](https://mern-food-ordering-app-frontend-5xqt.onrender.com/)
 - Mongoose
 - JSON Web Token (JWT)
 - Express Validator
+- Multer
 
 ###  Cloud & Database 
 - Mongodb Atlas
 - Cloudinary
 - Auth0
 - Render
+- Stripe Payment Gateway
 
 ---
 
